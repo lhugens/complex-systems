@@ -1,0 +1,1628 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{indentfirst}
+\usepackage{mathtools}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language british
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing double
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 2cm
+\rightmargin 1cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style british
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Spontaneous synchronization for the Kuramoto model
+\end_layout
+
+\begin_layout Author
+Leonardo Hügens
+\begin_inset Newline newline
+\end_inset
+
+(l.lobatodiasleitehugens@students.uu.nl)
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+The general concept of spontaneous synchronization appears all over nature,
+ such as the group pulsating glow of fireflies or the simple fact that our
+ hear beat consists of the uni-sonic contraction of our hear cells.
+ The Kuramoto model is a mathematical framework which turns out to be ideal
+ for the study of spontaneous synchronization, and consists in a set of
+ phase oscillators which are coupled to each other with a certain strength.
+ In this project I perform a theoretical analysis of the 
+\emph on
+mean-field Kuramoto model
+\emph default
+, and some numerical simulations with varying frequency distributions and
+ coupling strength values.
+\end_layout
+
+\begin_layout Section
+Theoretical Studies
+\end_layout
+
+\begin_layout Standard
+The mean-field Kuramoto model is given by the following set of coupled different
+ial equations:
+\begin_inset Formula 
+\begin{equation}
+\frac{d\theta_{i}}{dt}(t)=\omega_{i}+\frac{K}{N}\sum_{j=1}^{N}\sin\left(\theta_{j}(t)-\theta_{i}(t)\right)\label{eq:original}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $i=1,\dots\,,N$
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ \theta_{i}\right\} $
+\end_inset
+
+ and 
+\begin_inset Formula $\left\{ \omega_{i}\right\} $
+\end_inset
+
+ are respectively the natural frequencies and the phases of the oscillators,
+ and 
+\begin_inset Formula $K$
+\end_inset
+
+ is a coupling constant.
+\end_layout
+
+\begin_layout Standard
+If we define the mean natural frequency as follows:
+\begin_inset Formula 
+\begin{equation}
+\bar{\omega}\coloneqq\frac{1}{N}\sum_{i=1}^{N}\omega_{i}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+it behaves as the derivative of the total mean phase, as intuitively expected,
+ which we can see by explicitly differentiating it with respect to time:
+\begin_inset Formula 
+\begin{align*}
+\frac{d}{dt}\left(\frac{1}{N}\sum_{i=1}^{N}\theta_{i}(t)\right) & =\frac{1}{N}\sum_{i=1}^{N}\frac{d\theta_{i}}{dt}(t)\\
+ & =\frac{1}{N}\sum_{i=1}^{N}\left[\omega_{i}+\frac{K}{N}\sum_{j=1}^{N}\sin\left(\theta_{j}(t)-\theta_{i}(t)\right)\right]\\
+ & =\frac{1}{N}\sum_{i=1}^{N}\omega_{i}+\frac{K}{N^{2}}\sum_{i=1}^{N}\sum_{j=1}^{N}\sin\left(\theta_{j}(t)-\theta_{i}(t)\right)\\
+ & =\frac{1}{N}\sum_{i=1}^{N}\omega_{i}+\frac{K}{N^{2}}\left[\sum_{i=1}^{N}\sum_{j=1}^{N}\sin\left(\theta_{j}(t)\right)\cos\left(\theta_{i}(t)\right)-\sum_{i=1}^{N}\sum_{j=1}^{N}\sin\left(\theta_{i}(t)\right)\cos\left(\theta_{j}(t)\right)\right]\\
+ & =\frac{1}{N}\sum_{i=1}^{N}\omega_{i}\\
+ & =\bar{\omega}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This means that if at some point all the oscillators become synchronized,
+ meaning that their phases are all the same (i.e.
+ 
+\begin_inset Formula $\theta_{i}\left(t\right)=\bar{\theta}(t)\,\forall i$
+\end_inset
+
+, they are 
+\emph on
+phase locked
+\emph default
+) then the frequency of that bulk oscillation is 
+\begin_inset Formula $\bar{\omega}$
+\end_inset
+
+, which is a constant by definition and can be determined just by calculating
+ the average of all the natural frequencies of oscillators.
+ 
+\end_layout
+
+\begin_layout Standard
+It can be insightful to perform a coordinate transformation to a reference
+ frame which rotates with this mean natural frequency:
+\begin_inset Formula 
+\begin{equation}
+\phi_{i}(t):=\theta_{i}(t)-\bar{\omega}t
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this frame, the model becomes:
+\begin_inset Formula 
+\begin{align}
+\frac{d\theta_{i}}{dt}(t) & =\omega_{i}+\frac{K}{N}\sum_{j=1}^{N}\sin\left(\theta_{j}(t)-\theta_{i}(t)\right)\nonumber \\
+\frac{d}{dt}\left(\phi_{i}(t)+\bar{\omega}t\right) & =\omega_{i}+\frac{K}{N}\sum_{j=1}^{N}\sin\left(\phi_{j}(t)+\bar{\omega}t-\phi_{i}(t)-\bar{\omega}t\right)\nonumber \\
+\frac{d\phi_{i}}{dt}(t) & =\left(\omega_{i}-\bar{\omega}\right)+\frac{K}{N}\sum_{j=1}^{N}\sin\left(\phi_{j}(t)-\phi_{i}(t)\right)\label{eq:rotframe}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Lyapunov function for studying the stability of the 
+\emph on
+equilibria
+\end_layout
+
+\begin_layout Standard
+The evolution of this system to a synchronized stable state can be studied
+ in the formalism of Lyapunov stability.
+ The Lyapunov stability theorem, as presented by 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "khalil"
+literal "false"
+
+\end_inset
+
+ is:
+\end_layout
+
+\begin_layout Theorem
+
+\series bold
+Lyapunov's stability theorem
+\series default
+: Considering the autonomous system 
+\begin_inset Formula 
+\begin{equation}
+\dot{\boldsymbol{x}}=f\left(\boldsymbol{x}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+where 
+\begin_inset Formula $f:D\rightarrow R^{n}$
+\end_inset
+
+ is a locally Lipschitz map from a domain 
+\begin_inset Formula $D\subset R^{n}$
+\end_inset
+
+ into 
+\begin_inset Formula $R^{n}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\boldsymbol{x}=0$
+\end_inset
+
+ be an equilibrium point, i.e.
+ 
+\begin_inset Formula $f\left(\boldsymbol{0}\right)=0$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $V:D\rightarrow R$
+\end_inset
+
+ be a continuously differentiable function (called a Lyapunov function)
+ such that 
+\begin_inset Formula 
+\begin{equation}
+V(\boldsymbol{0})=0\text{ and }V(\boldsymbol{x})>0\text{ in }D-\{\boldsymbol{0}\}\label{eq:Vcond}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\dot{V}(\boldsymbol{x})\leq0\text{ in }D\label{eq:stable}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+Then 
+\begin_inset Formula $\boldsymbol{x}=\boldsymbol{0}$
+\end_inset
+
+ is stable.
+ Moreover, if 
+\begin_inset Formula 
+\begin{equation}
+\dot{V}(\boldsymbol{x})<0\text{ in }D-\{\boldsymbol{0}\}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+then 
+\begin_inset Formula $\boldsymbol{x}=\boldsymbol{0}$
+\end_inset
+
+ is asymptotically stable.
+\end_layout
+
+\begin_layout Standard
+A Lyapunov function for the Kuramoto model, whose stability properties are
+ studied in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PhysRevE.52.2907,RevModPhys.77.137"
+literal "false"
+
+\end_inset
+
+ is:
+\begin_inset Formula 
+\begin{equation}
+\mathcal{H}:=-\frac{K}{2N}\sum_{i,j}\cos\left(\phi_{i}-\phi_{j}\right)-\sum_{i=1}^{N}\left(\omega_{i}-\bar{\omega}\right)\phi_{i}\label{eq:hamiltonian}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is not immediate to verify the conditions in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Vcond"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, but they are easily verifiable by adding a constant to the function, which
+ is irrelevant for it to satisfy 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:stable"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+\dot{\mathcal{H}} & =\sum_{i=1}^{N}\frac{\partial\mathcal{H}}{\partial\phi_{i}}\frac{d\phi_{i}}{dt}\\
+ & =\sum_{i=1}^{N}\frac{d\phi_{i}}{dt}\frac{\partial}{\partial\phi_{i}}\left[-\frac{K}{2N}\sum_{j,k}\cos\left(\phi_{j}-\phi_{k}\right)-\sum_{l=1}^{N}\left(\omega_{l}-\bar{\omega}\right)\phi_{l}\right]\\
+ & =\sum_{i=1}^{N}\frac{d\phi_{i}}{dt}\left[\frac{K}{2N}\sum_{j,k}\text{sin}\left(\phi_{j}-\phi_{k}\right)\left(\delta_{ij}-\delta_{ik}\right)-\sum_{l=1}^{N}\left(\omega_{l}-\bar{\omega}\right)\delta_{il}\right]\\
+ & =\sum_{i=1}^{N}\frac{d\phi_{i}}{dt}\left[\frac{K}{2N}\left\{ \sum_{j,k}\text{sin}\left(\phi_{j}-\phi_{k}\right)\delta_{ij}-\sum_{j,k}\text{sin}\left(\phi_{j}-\phi_{k}\right)\delta_{ik}\right\} -\left(\omega_{i}-\bar{\omega}\right)\right]\\
+ & =\sum_{i=1}^{N}\frac{d\phi_{i}}{dt}\left[\frac{K}{2N}\left\{ \sum_{k}\text{sin}\left(\phi_{i}-\phi_{k}\right)-\sum_{j}\text{sin}\left(\phi_{j}-\phi_{i}\right)\right\} -\left(\omega_{i}-\bar{\omega}\right)\right]\\
+ & =-\sum_{i=1}^{N}\frac{d\phi_{i}}{dt}\left[\frac{K}{N}\sum_{j}\text{sin}\left(\phi_{j}-\phi_{i}\right)+\left(\omega_{i}-\bar{\omega}\right)\right]\\
+ & =-\sum_{i=1}^{N}\left[\frac{K}{N}\sum_{j}\text{sin}\left(\phi_{j}-\phi_{i}\right)+\left(\omega_{i}-\bar{\omega}\right)\right]\left[\frac{K}{N}\sum_{j}\text{sin}\left(\phi_{j}-\phi_{i}\right)+\left(\omega_{i}-\bar{\omega}\right)\right]\\
+ & =-\sum_{i=1}^{N}\left[\frac{K}{N}\sum_{j}\text{sin}\left(\phi_{j}-\phi_{i}\right)+\left(\omega_{i}-\bar{\omega}\right)\right]^{2}\leq0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus, the evolution of the system described converges to the minimum of
+ 
+\begin_inset Formula $\mathcal{H}$
+\end_inset
+
+.
+ In order to determine the 
+\emph on
+extreme points 
+\emph default
+of 
+\begin_inset Formula $\mathcal{H}$
+\end_inset
+
+, we must determine the conditions for which 
+\begin_inset Formula $\nabla\mathcal{H}=0$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align}
+\frac{\partial\mathcal{H}}{\partial\phi_{i}} & =0\nonumber \\
+\frac{K}{N}\sum_{j}\text{sin}\left(\phi_{j}-\phi_{i}\right)+\left(\omega_{i}-\bar{\omega}\right) & =0\nonumber \\
+\sum_{j}\text{sin}\left(\phi_{j}-\phi_{i}\right) & =-\frac{N}{K}\left(\omega_{i}-\bar{\omega}\right)\label{eq:stability}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This condition is better understood in terms of order parameters, which
+ are typically scalar functions determined by the system's degrees of freedom
+ that experience a clear change in behavior, also known as 
+\emph on
+phase transition.
+ 
+\emph default
+In our case, such order parameter is the
+\emph on
+ 
+\emph default
+norm 
+\begin_inset Formula $r$
+\end_inset
+
+
+\emph on
+ 
+\emph default
+of the 
+\emph on
+phasor
+\emph default
+ that results from adding all the individual phasors 
+\begin_inset Formula $e^{i\phi_{i}}$
+\end_inset
+
+ of the system:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+re^{i\Psi}:=\frac{1}{N}\sum_{j=1}^{N}e^{i\phi_{j}}\label{eq:phasor}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The vectorial addition present in this definition can be visually understood
+ as gluing the tips of each phasor in the complex plane to each other, 
+\begin_inset Formula $r$
+\end_inset
+
+ being the norm of the phasor that goes from the origin to the tip of the
+ last phasor in the ordered sum.
+ Considering the situation in which all the oscillators are synchronized,
+ i.e.
+ 
+\begin_inset Formula $\theta_{i}\left(t\right)=\bar{\theta}(t)\,\forall i$
+\end_inset
+
+, the 
+\begin_inset Formula $re^{i\Psi}$
+\end_inset
+
+ phasor will be exactly superimposed with all the glued oscillators, but
+ with norm 1.
+ Because this is the only situation in which we can have 
+\begin_inset Formula $r=1$
+\end_inset
+
+, it's very easy to identify the phase transition corresponding the the
+ synchronization in a 
+\begin_inset Formula $r$
+\end_inset
+
+ vs 
+\begin_inset Formula $t$
+\end_inset
+
+ plot for example, even if we have a very large number 
+\begin_inset Formula $N$
+\end_inset
+
+ of oscillators.
+\end_layout
+
+\begin_layout Standard
+Because the real and imaginary parts of both sides of the definition need
+ to be equal, this implies that
+\begin_inset Formula 
+\begin{align}
+r\text{\text{sin}\left(\Psi-\phi_{i}\right)} & =\frac{1}{N}\sum_{j=1}^{N}\text{sin}\left(\phi_{j}-\phi_{i}\right)\label{eq:sin}\\
+r\text{\text{cos}\left(\Psi-\phi_{i}\right)} & =\frac{1}{N}\sum_{j=1}^{N}\text{cos}\left(\phi_{j}-\phi_{i}\right)\label{eq:cos}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can thus rewrite the stability conditions 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:stability"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ is terms of this order parameter:
+\begin_inset Formula 
+\begin{align}
+\sum_{j}\text{sin}\left(\phi_{j}-\phi_{i}\right) & =-\frac{N}{K}\left(\omega_{i}-\bar{\omega}\right)\nonumber \\
+Nr\,\text{\text{sin}\left(\Psi-\phi_{i}\right)} & =-\frac{N}{K}\left(\omega_{i}-\bar{\omega}\right)\nonumber \\
+\left(\omega_{i}-\bar{\omega}\right) & =Kr\,\text{\text{sin}\left(\phi_{i}-\Psi\right)}\nonumber \\
+\Delta\left(\omega_{i}\right) & =Kr\,\text{\text{sin}\left(\phi_{i}-\Psi\right)}\label{eq:stability2}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Model with 
+\series medium
+\emph on
+N 
+\series default
+\emph default
+oscillators
+\end_layout
+
+\begin_layout Standard
+Let's now consider for simplicity the case in which all the natural frequencies
+ of the oscillators 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+ are the same - which implies that the mean natural frequency is the same
+ as each individual frequency, 
+\begin_inset Formula $\bar{\omega}=\omega_{i}\,\forall i$
+\end_inset
+
+ - and that 
+\begin_inset Formula $K=1$
+\end_inset
+
+.
+ In this case, in the rotating frame previously discussed, the model 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:rotframe"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ becomes:
+\begin_inset Formula 
+\begin{align}
+\frac{d\phi_{i}}{dt}(t) & =\frac{1}{N}\sum_{j=1}^{N}\sin\left(\phi_{j}(t)-\phi_{i}(t)\right)\\
+\frac{d\phi_{i}}{dt}(t) & =r\text{\text{sin}\left(\Psi\left(t\right)-\phi_{i}\left(t\right)\right)}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where I used 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:cos"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ to write it in terms of the order parameter.
+ In the previous section, where I showed that 
+\begin_inset Formula $\nabla\mathcal{H}=0$
+\end_inset
+
+ for the Hamiltonian 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:hamiltonian"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, I determined that in general
+\begin_inset Formula 
+\begin{equation}
+\frac{\partial\mathcal{H}}{\partial\phi_{i}}=-\frac{K}{N}\sum_{j}\text{sin}\left(\phi_{j}-\phi_{i}\right)+\left(\omega_{i}-\bar{\omega}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus, it turns out that 
+\begin_inset Formula $-\frac{\partial\mathcal{H}}{\partial\phi_{i}}=\frac{d\phi_{i}}{dt}$
+\end_inset
+
+, i.e.
+ our model is a gradient system 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "morris"
+literal "false"
+
+\end_inset
+
+.
+ Using our present case 
+\begin_inset Formula $\bar{\omega}=\omega_{i}\,\forall i$
+\end_inset
+
+ for simplicity, this Hamiltonian can be rewritten as 
+\begin_inset Formula 
+\begin{align*}
+\mathcal{H} & =-\frac{1}{2N}\sum_{i,j}\cos\left(\phi_{i}-\phi_{j}\right)\\
+ & =-\frac{1}{2}r\sum_{i}\text{\text{cos}\left(\Psi-\phi_{i}\right)}\\
+ & =-\frac{1}{2}r^{2}\sum_{i}\text{\text{cos}\left(\Psi-\Psi\right)}\\
+ & =-\frac{N}{2}r^{2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where I used the identity 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:cos"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ twice.
+ We thus conclude that the Hamiltonian, which can be thought of the energy
+ of a system, has it's minimum at the maximum r value, which we've argued
+ before it's unique and it corresponds to the synchronized situation 
+\begin_inset Formula $\theta_{i}\left(t\right)=\bar{\theta}(t)\,\forall i$
+\end_inset
+
+.
+ This shows the usefulness of finding and order parameter and expressing
+ our systems dynamics in terms of it.
+ 
+\end_layout
+
+\begin_layout Standard
+In our case we can also show that the means phase 
+\begin_inset Formula $\frac{1}{N}\sum_{i=1}^{N}\theta_{i}(t)$
+\end_inset
+
+ is conserved in time, as follows:
+\begin_inset Formula 
+\begin{align*}
+\frac{d\phi_{i}}{dt}(t) & =\frac{1}{N}\sum_{j=1}^{N}\sin\left(\phi_{j}-\phi_{i}\right)\\
+\sum_{i=1}^{N}\frac{d\phi_{i}}{dt}(t) & =\frac{1}{N}\sum_{i,j=1}^{N}\sin\left(\phi_{j}-\phi_{i}\right)\\
+\sum_{i=1}^{N}\frac{d\phi_{i}}{dt}(t) & =\sum_{i=1}^{N}\sum_{j=1}^{N}\sin\left(\theta_{j}(t)\right)\cos\left(\theta_{i}(t)\right)-\sum_{i=1}^{N}\sum_{j=1}^{N}\sin\left(\theta_{i}(t)\right)\cos\left(\theta_{j}(t)\right)\\
+\implies\frac{d}{dt}\left[\frac{1}{N}\sum_{i=1}^{N}\phi_{i}(t)\right] & =0\\
+\implies\frac{1}{N}\sum_{i=1}^{N}\phi_{i}(t) & =\frac{1}{N}\sum_{i=1}^{N}\phi_{i}(t=0)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Numerical studies of the Kuramoto model
+\end_layout
+
+\begin_layout Standard
+At this stage we proceed to evolving 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:original"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ in time, by choosing the natural frequencies 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+ with some distribution, imposing initial conditions 
+\begin_inset Formula $\left\{ \theta_{i}\right\} $
+\end_inset
+
+ and using the Euler method.
+ This means that we pick a time-step 
+\begin_inset Formula $dt$
+\end_inset
+
+ which is sufficiently small compared to the other relevant quantities in
+ the system, and perform an iterative use of the following equation:
+\begin_inset Formula 
+\begin{equation}
+\theta_{i}\left(t+dt\right)=\theta_{i}\left(t\right)+\frac{d\phi_{i}}{dt}dt
+\end{equation}
+
+\end_inset
+
+ It is very insightful to note that this expression can also be written
+ as
+\begin_inset Formula 
+\begin{align}
+\theta_{i}\left(t+dt\right) & =\theta_{i}\left(t\right)-\frac{\partial\mathcal{H}}{\partial\phi_{i}}dt\\
+\boldsymbol{\theta}\left(t+dt\right) & =\boldsymbol{\theta}\left(t\right)-\nabla\mathcal{H}\,dt
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+which means that if we have an 
+\begin_inset Formula $N$
+\end_inset
+
+ dimensional hyper plane with all the 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ in orthogonal axes, and plot the correspondent 
+\begin_inset Formula $\mathcal{H}$
+\end_inset
+
+ values in an orthogonal axis to that plane, the system will generally take
+ infinitesimal steps in the direction of steepest descent, converging to
+ the minimum of 
+\begin_inset Formula $\mathcal{H}$
+\end_inset
+
+.
+ This statement is intuitive but not absolute, as there can sometimes be
+ local minima that 
+\begin_inset Quotes bld
+\end_inset
+
+trap
+\begin_inset Quotes brd
+\end_inset
+
+ the system, stopping it from converging to the global minimum.
+ In our case there is a global minimum as I've stated before, which corresponds
+ to the 
+\emph on
+phase locking
+\emph default
+ of all the oscillators.
+\end_layout
+
+\begin_layout Subsection
+Normal distribution of the natural frequencies
+\end_layout
+
+\begin_layout Standard
+Let
+\begin_inset Quotes brd
+\end_inset
+
+s firstly consider the case in which we sample our frequencies 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+ from a normal distribution 
+\begin_inset Formula $N\left(0,1\right)$
+\end_inset
+
+, and our initial phases from a uniform distribution.
+ At first it is insightful to plot 
+\begin_inset Formula $\sin\left(\theta_{i}\right)$
+\end_inset
+
+ vs 
+\begin_inset Formula $t$
+\end_inset
+
+, to check if the result corresponds to our intuitive expectations, and
+ make sure the code implementation of Euler's method is properly done.
+ These plots are represented in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:theta-normal"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Each 
+\begin_inset Quotes bld
+\end_inset
+
+rectangle
+\begin_inset Quotes brd
+\end_inset
+
+ of the Figure corresponds to a 
+\begin_inset Formula $K$
+\end_inset
+
+ value, and has 
+\begin_inset Formula $N=10$
+\end_inset
+
+ curves which correspond to the 
+\begin_inset Formula $\sin\left(\theta_{i}\right)$
+\end_inset
+
+ evolution of the oscillators, with 
+\begin_inset Formula $t\in\left[0,100\right]$
+\end_inset
+
+, 
+\begin_inset Formula $dt=0.01$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $K$
+\end_inset
+
+ valued rectangles range from top to bottom as 
+\begin_inset Formula $K\in\left[0,5\right]$
+\end_inset
+
+ with 
+\begin_inset Formula $dK=0.5$
+\end_inset
+
+.
+ Initial 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ conditions were kept the same for all 
+\begin_inset Formula $K$
+\end_inset
+
+ values.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/theta-normal.png
+	lyxscale 10
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sin\left(\theta_{i}\right)$
+\end_inset
+
+ vs 
+\begin_inset Formula $t$
+\end_inset
+
+ plots.
+ 
+\begin_inset Formula $N=10$
+\end_inset
+
+.
+ Normally distributed 
+\begin_inset Formula $\omega$
+\end_inset
+
+'s.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:theta-normal"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For large 
+\begin_inset Formula $K$
+\end_inset
+
+ values, all the oscillators synchronize almost instantaneously, without
+ even completing a full oscillation without it already becoming synchronized.
+ It may be strange that in this plot we would expect the oscillations to
+ become inexistent as 
+\begin_inset Formula $K$
+\end_inset
+
+ increases, since we're sampling 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+ from a normal distribution with average value 
+\begin_inset Formula $0$
+\end_inset
+
+, and yet we can clearly see that there are still visible oscillations for
+ large 
+\begin_inset Formula $K$
+\end_inset
+
+.
+ This is simply because a variance of 
+\begin_inset Formula $1$
+\end_inset
+
+ is very significant for a 
+\begin_inset Formula $N=10$
+\end_inset
+
+ sample, and thus the average frequency is still large enough to be noticeable
+ in the plot.
+ It is also noticeable that there isn't much difference between the first
+ 
+\begin_inset Formula $K$
+\end_inset
+
+ values in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:theta-normal"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, whereas the difference from the 4th to the 5th 
+\begin_inset Formula $K$
+\end_inset
+
+ values is clear, which hints us for the existence of a critical value 
+\begin_inset Formula $K_{c}$
+\end_inset
+
+ for which the system synchronizes.
+ 
+\end_layout
+
+\begin_layout Standard
+A stationary synchronization theoretical analysis performed in detail in
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RevModPhys.77.137"
+literal "false"
+
+\end_inset
+
+ tells us that if our natural frequencies 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+ follow a certain distribution 
+\begin_inset Formula $g\left(\omega\right)$
+\end_inset
+
+ then our order parameter 
+\begin_inset Formula $r$
+\end_inset
+
+ obeys a consistency equation given by:
+\begin_inset Formula 
+\begin{equation}
+1=K\int_{-\pi/2}^{\pi/2}\cos^{2}(\theta)g(Kr\sin\theta)d\theta\label{eq:consistency}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From this consistency equation it is possible to extract a critical value
+ 
+\begin_inset Formula $K_{c}$
+\end_inset
+
+ for which the phase transition occurs, which is given by 
+\begin_inset Formula $K_{c}=2\sqrt{2/\pi}\approx1.6$
+\end_inset
+
+ for a standard normal distribution 
+\begin_inset Formula $g\left(\omega\right)=e^{-\omega^{2}/2}/\sqrt{2\pi}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+With this in mind, increasing the number of oscillators to 
+\begin_inset Formula $N=1000$
+\end_inset
+
+, 
+\emph on
+coarse-graining
+\emph default
+ the 
+\begin_inset Formula $K$
+\end_inset
+
+ values to 
+\begin_inset Formula $K\in\left[0,5\right]$
+\end_inset
+
+ with 
+\begin_inset Formula $dK=0.2$
+\end_inset
+
+ and only plotting the order parameter at the last time step 
+\begin_inset Formula $r_{t=100}$
+\end_inset
+
+ vs 
+\begin_inset Formula $K$
+\end_inset
+
+ should clarify if there exists in fact a phase transition or not.
+ In the following Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rk1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ I plot several runs of this simulation, what differs between being only
+ the resampled 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+ and initial 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+.
+ I also plot a theoretical curve value pairs (
+\begin_inset Formula $r$
+\end_inset
+
+,
+\begin_inset Formula $K$
+\end_inset
+
+) correspond to solutions of the consistency equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:consistency"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/rk1.png
+	lyxscale 10
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $r_{t=100}$
+\end_inset
+
+ vs 
+\begin_inset Formula $K$
+\end_inset
+
+ plot for normal distributed 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rk1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We observe a high agreement between the simulations and what is predicted
+ theoretically, a phase transition occurs for roughly 
+\begin_inset Formula $K\approx1.6$
+\end_inset
+
+.
+ Because the derivation of the consistency equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:consistency"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ uses the 
+\begin_inset Formula $N\rightarrow+\infty$
+\end_inset
+
+ limit, it is expected that we can improve the mentioned agreement even
+ further by using arbitrarily larger number of oscillators in the simulation.
+ Now, it is also important to remark that our 
+\begin_inset Quotes bld
+\end_inset
+
+theoretical
+\begin_inset Quotes brd
+\end_inset
+
+ curve was also obtained by an algorithm that uses a finite set of 
+\begin_inset Formula $r$
+\end_inset
+
+ and 
+\begin_inset Formula $K$
+\end_inset
+
+ values, and it could be improved by decreasing the interval steps used
+ in these sets.
+ In the continuous limit, it is possible to identify a first order phase
+ transition at 
+\begin_inset Formula $K_{c}$
+\end_inset
+
+, which is unsafe to infer by analyzing our plot in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rk1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+We now try to visualize further this phase transition, trying to catch how
+ soon in the simulation it happens.
+ Running the model for 
+\begin_inset Formula $K=1$
+\end_inset
+
+ and 
+\begin_inset Formula $K=2$
+\end_inset
+
+ and plotting 
+\begin_inset Formula $r\left(t\right)$
+\end_inset
+
+, we obtain the plot in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rt2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/rt2.png
+	lyxscale 10
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $r_{t=100}$
+\end_inset
+
+ vs 
+\begin_inset Formula $K$
+\end_inset
+
+ plot for normal distributed 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rt2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These results are consistent with what is expected, as by analyzing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rk1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ we can see that for 
+\begin_inset Formula $K=1$
+\end_inset
+
+ definitely shouldn't occur synchronization (identified by 
+\begin_inset Formula $r=1$
+\end_inset
+
+), and for 
+\begin_inset Formula $K=2$
+\end_inset
+
+ it should, and these stabilization 
+\begin_inset Formula $r$
+\end_inset
+
+ values seem to be roughly the same as those obtained in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:rk1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Uniform distribution of the natural frequencies
+\end_layout
+
+\begin_layout Standard
+We now turn to the case where we have a uniform distribution of the natural
+ frequencies between 
+\begin_inset Formula $-\frac{1}{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{equation}
+g(\omega)=\left\{ \begin{array}{ll}
+1, & |\omega|\leq\frac{1}{2}\\
+0, & |\omega|>\frac{1}{2}
+\end{array}\right.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:theta-uniform"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ I present the visually intuitive plot corresponding to this case.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/theta-uniform.png
+	lyxscale 10
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sin\left(\theta_{i}\right)$
+\end_inset
+
+ vs 
+\begin_inset Formula $t$
+\end_inset
+
+ plots.
+ 
+\begin_inset Formula $N=10$
+\end_inset
+
+.
+ Uniformly distributed 
+\begin_inset Formula $\omega$
+\end_inset
+
+'s.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:theta-uniform"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Just from this plot it is possible to infer that the phase transition where
+ all the oscillators synchronize will occur sooner (i.e.
+ for a smaller 
+\begin_inset Formula $K$
+\end_inset
+
+ value).
+ 
+\end_layout
+
+\begin_layout Standard
+Performing the much more rigorous procedure just as in the normally distributed
+ 
+\begin_inset Formula $\omega$
+\end_inset
+
+'s case, we obtain the following curves: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/rk3.png
+	lyxscale 10
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $r_{t=100}$
+\end_inset
+
+ vs 
+\begin_inset Formula $K$
+\end_inset
+
+ plot for uniformly distributed 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rk3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/rt45.png
+	lyxscale 10
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $r_{t=100}$
+\end_inset
+
+ vs 
+\begin_inset Formula $K$
+\end_inset
+
+ plot for normal distributed 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:rt2-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang english
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintAll"
+bibfiles "kuramoto"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

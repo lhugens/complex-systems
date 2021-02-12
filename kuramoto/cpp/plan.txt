@@ -1,0 +1,42 @@
+Numerical Studies
+
+1 - Plot r_infinity vs K
+    N = 1000
+    thetas ~ uniform
+    omegas ~ gaussian
+    T = [0, 100], dt = 0.01
+    K = [0,5], dK = 0.2
+
+    Plot r vs K (solutions of consistency equation)
+
+2 - Plot r(t) vs t
+    "
+    K = 1, 2
+
+3 - Plot r_infinity vs K
+    N = 2000
+    thetas ~ uniform
+    omegas ~ uniform
+    T = [0, 200], dt = 0.05
+    K = [0, 1.5], dK = 0.03
+
+4 - Plot r(t) vs t x10
+    "
+    K = 1
+    fixed realization of omegas
+    sample 10 different initial theta arrays
+
+5 - Plot r(t) vs t x10
+    "
+    K = 1
+    fixed realization of initial theta array
+    sample 10 omega arrays
+
+Kuramoto on Watts-Strogatz Model
+
+a)  p in [0, 0.05, 0.1, 0.2, ..., 0.9, 1]
+    N = 2000
+    T = [0, 200], dt = 0.03
+    K = 3
+
+b) estimate relationship between Kc and p
